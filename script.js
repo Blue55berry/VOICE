@@ -35,8 +35,8 @@ recognition.onresult = (event) => {
 // Simulated Search Function
 function performSearch(query) {
     const fakeData = {
-        "health insurance schemes": "The Chief Minister Comprehensive Health Insurance Scheme",
-        "time": `The current time is ${new Date().toLocaleTimeString()}.`,
+        "health insurance scheme": "The Chief Minister Comprehensive Health Insurance Scheme",
+        "Agnipath Scheme": "The Agnipath Scheme will be the sole method for recruiting soldiers below the rank of commissioned officers into the three branches of the armed forces.",
         "news": "The latest news: AI is revolutionizing industries globally."
     };
 
