@@ -7,16 +7,19 @@ const assistantUI = document.getElementById("assistantUI");
 const userInput = document.getElementById("userInput");
 const resultDiv = document.getElementById("result");
 const schemesList = document.getElementById("schemesList");
+const searchAgainBtn = document.getElementById("searchAgainBtn");
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 recognition.lang = "en-IN"; // Set language to English (India)
 
+let isRecognitionActive = false; // Flag to track recognition state
+
 // Sample data for Tamil Nadu schemes
 const schemes = [
   {
-    name: "Amma Unavagam",
+    name: "Amma Unavakam",
     description: "Low-cost canteens providing affordable meals.",
   },
   {
@@ -70,23 +73,42 @@ userInput.addEventListener("input", (e) => {
 toggleAssistantBtn.addEventListener("click", () => {
   assistantUI.classList.remove("hidden"); // Show assistant UI
   assistantUI.classList.add("flex"); // Add flex display
+  if (!isRecognitionActive) {
+    recognition.start(); // Start voice recognition
+    isRecognitionActive = true;
+  }
 });
 
 closeAssistantBtn.addEventListener("click", () => {
   assistantUI.classList.add("hidden"); // Hide assistant UI
+  if (isRecognitionActive) {
+    recognition.stop(); // Stop voice recognition
+    isRecognitionActive = false;
+  }
 });
 
 // Voice recognition setup
-toggleAssistantBtn.addEventListener("click", () => {
-  recognition.start();
-});
-
 recognition.onresult = (event) => {
   const voiceQuery = event.results[0][0].transcript;
   userInput.value = voiceQuery; // Populate the input field with the voice query
   filterSchemes(voiceQuery); // Perform search with the voice query
 };
 
+recognition.onend = () => {
+  isRecognitionActive = false; // Reset flag when recognition ends
+};
+
 recognition.onerror = (event) => {
   console.error("Voice recognition error:", event.error);
+  isRecognitionActive = false; // Reset flag on error
 };
+
+// Event listener for "Search Again" button
+searchAgainBtn.addEventListener("click", () => {
+  userInput.value = ""; // Clear the input field
+  schemesList.innerHTML = ""; // Clear the results
+  if (!isRecognitionActive) {
+    recognition.start(); // Restart voice recognition
+    isRecognitionActive = true;
+  }
+});
