@@ -33,6 +33,61 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+<!--     <script src="script.js"></script> -->
+    <script>
+        // Sample JSON data with 30+ schemes
+        const schemes = [
+            { id: 1, name: "Health Insurance Scheme" },
+            { id: 2, name: "Education Loan Scheme" },
+            { id: 3, name: "Housing Subsidy Scheme" },
+            { id: 4, name: "Agricultural Loan Scheme" },
+            { id: 5, name: "Startup Funding Scheme" },
+            { id: 6, name: "Women Empowerment Scheme" },
+            { id: 7, name: "Senior Citizen Pension Scheme" },
+            { id: 8, name: "Child Welfare Scheme" },
+            { id: 9, name: "Disability Support Scheme" },
+            { id: 10, name: "Unemployment Assistance Scheme" },
+            { id: 11, name: "Small Business Grant Scheme" },
+            { id: 12, name: "Renewable Energy Subsidy Scheme" },
+            { id: 13, name: "Skill Development Scheme" },
+            { id: 14, name: "Rural Development Scheme" },
+            { id: 15, name: "Urban Housing Scheme" },
+            { id: 16, name: "Youth Employment Scheme" },
+            { id: 17, name: "Healthcare Infrastructure Scheme" },
+            { id: 18, name: "Digital Literacy Scheme" },
+            { id: 19, name: "Public Transport Subsidy Scheme" },
+            { id: 20, name: "Art and Culture Promotion Scheme" },
+            { id: 21, name: "Sports Development Scheme" },
+            { id: 22, name: "Environmental Conservation Scheme" },
+            { id: 23, name: "Water Conservation Scheme" },
+            { id: 24, name: "Affordable Housing Scheme" },
+            { id: 25, name: "Food Security Scheme" },
+            { id: 26, name: "Microfinance Scheme" },
+            { id: 27, name: "Disaster Relief Scheme" },
+            { id: 28, name: "Tourism Promotion Scheme" },
+            { id: 29, name: "Technology Innovation Scheme" },
+            { id: 30, name: "Public Safety Scheme" },
+            { id: 31, name: "Education Scholarship Scheme" }
+        ];
+
+        // Search functionality
+        const userInput = document.getElementById("userInput");
+        const resultDiv = document.getElementById("result");
+
+        userInput.addEventListener("input", () => {
+            const query = userInput.value.toLowerCase();
+            const filteredSchemes = schemes.filter(scheme =>
+                scheme.name.toLowerCase().includes(query)
+            );
+
+            if (filteredSchemes.length > 0) {
+                resultDiv.innerHTML = filteredSchemes
+                    .map(scheme => `<p>${scheme.name}</p>`)
+                    .join("");
+            } else {
+                resultDiv.innerHTML = `<p class="text-sm text-gray-500">No schemes found...</p>`;
+            }
+        });
+    </script>
 </body>
 </html>
