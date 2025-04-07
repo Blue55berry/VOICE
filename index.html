@@ -4,39 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Voice Assistant AI Bot</title>
+    <title>Responsive Voice Assistant</title>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div class="w-full max-w-md p-6 bg-white shadow-md rounded-md">
-        <h1 class="text-2xl font-bold text-center text-gray-800 mb-4">Voice Assistant AI Bot</h1>
+<body class="bg-gray-100">
+    <!-- Voice Assistant Container -->
+    <div id="voiceAssistantContainer" class="fixed bottom-4 right-4 w-16 h-16 bg-green-800 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-transform transform translate-y-0 hover:scale-110 hover:bg-green-600 duraction-300">
+        <!-- Assistant Icon -->
+        <button id="toggleAssistantBtn" class="text-white text-xl">🎤</button>
+    </div>
 
-        <div class="mb-4">
-            <label for="userInput" class="block text-gray-700 font-medium mb-2">Type or Speak a Command:</label>
-            <div class="flex items-center border rounded-md shadow-sm">
-                <input
-                    id="userInput"
-                    type="text"
-                    class="flex-grow p-2 text-gray-800 border-none focus:ring focus:outline-none"
-                    placeholder="Ask me something..."
-                />
-                <button
-                    id="speakBtn"
-                    class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600"
-                >
-                    🎤
-                </button>
-            </div>
+    <!-- Full Voice Assistant UI -->
+    <div id="assistantUI" class="fixed bottom-0 right-0 w-full md:w-1/2 lg:w-1/3 h-1/2 bg-white shadow-lg rounded-t-lg hidden flex flex-col">
+        <div class="p-4 bg-green-500 text-white rounded-t-lg flex justify-between items-center">
+            <h2 class="text-lg font-bold">Voice Assistant</h2>
+            <button id="closeAssistantBtn" class="text-white text-xl font-bold">×</button>
         </div>
-
-        <button
-            id="searchBtn"
-            class="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
-        >
-            Search
-        </button>
-
-        <div id="result" class="mt-6 p-4 bg-gray-50 border rounded-md shadow-sm text-gray-800">
-            <p class="text-sm text-gray-500">Your results will appear here...</p>
+        <div class="flex-grow p-4 overflow-auto">
+            <label for="userInput" class="block text-gray-700 font-medium mb-2">Your Schemes Find It:</label>
+            <input
+                id="userInput"
+                type="text"
+                class="w-full p-2 border rounded-md text-gray-800"
+                placeholder="Speak or type your schemes..."
+            />
+            <div id="result" class="mt-4 p-4 bg-gray-50 h-20 border rounded-md shadow-sm text-gray-800 flex text-center">
+                <p class="text-sm text-gray-500 flex my-auto">Your results will appear here...</p>
+            </div>
         </div>
     </div>
 
